@@ -1,3 +1,4 @@
 export const App = () => (
-  <div className="app">Hello world</div>
+  <div className="app">
+  </div>
 )
