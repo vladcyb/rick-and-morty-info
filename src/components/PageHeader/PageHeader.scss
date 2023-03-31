@@ -1,0 +1,9 @@
+.page-header {
+  height: 60px;
+  padding: 10px;
+
+  &__img {
+    height: 100%;
+    display: inline-block;
+  }
+}

@@ -1,10 +1,42 @@
 module.exports = {
-  'extends': ['plugin:react/recommended'],
-  'plugins': ['@typescript-eslint', 'unused-imports'],
+  'env': {
+    'browser': true,
+    'es2021': true,
+    'node': true,
+  },
+  'extends': [
+    'eslint:recommended',
+    'plugin:react/recommended',
+    'plugin:@typescript-eslint/recommended',
+    'plugin:import/recommended',
+    'plugin:import/errors',
+    'plugin:import/warnings',
+    'plugin:css-import-order/recommended',
+  ],
+  'parser': '@typescript-eslint/parser',
+  'parserOptions': {
+    'ecmaFeatures': {
+      'jsx': true,
+    },
+    'ecmaVersion': 12,
+    'sourceType': 'module',
+  },
+  'plugins': [
+    'react',
+    '@typescript-eslint',
+    'unused-imports',
+    'import',
+    'css-import-order',
+  ],
   'rules': {
-    'linebreak-style': ['off'],
-    'react/react-in-jsx-scope': 'off',
-    '@typescript-eslint/no-unused-vars': 'off',
+    'no-multi-spaces': 'error',
+    'indent': [
+      'error', 2, {
+        SwitchCase: 1,
+      },
+    ],
+    'object-curly-spacing': ['error', 'always'],
+    '@typescript-eslint/no-unused-vars': 'warn',
     'unused-imports/no-unused-imports': 'warn',
     'unused-imports/no-unused-vars': [
       'warn',
@@ -15,38 +47,63 @@ module.exports = {
         'argsIgnorePattern': '^_',
       },
     ],
+    'linebreak-style': ['off'],
+    'quotes': [
+      'error',
+      'single',
+    ],
+    'semi': [
+      'error',
+      'never',
+    ],
+    'react/react-in-jsx-scope': 'off',
+    'react/jsx-curly-spacing': ['error', {
+      'when': 'never',
+    }],
+    'react/jsx-equals-spacing': [2, 'never'],
     'no-multiple-empty-lines': ['error', {
       'max': 2,
       'maxEOF': 0,
     }],
-    'jsx-quotes': ['error', 'prefer-double'],
-    'max-len': [2, {
-      'code': 100,
-      'tabWidth': 4,
-      'ignoreUrls': true,
-      'ignoreStrings': true,
-    }],
-    'react/jsx-tag-spacing': ['error', {
-      'beforeSelfClosing': 'always',
-    }],
-    'react/jsx-curly-spacing': ['error', 'never'],
-    'require-jsdoc': ['off'],
-    'object-curly-spacing': ['error', 'always'],
-    'indent': ['error', 2],
-    'semi': ['error', 'never'],
-    'quotes': ['error', 'single'],
-    'no-trailing-spaces': ['error'],
     'eol-last': ['error', 'always'],
+    '@typescript-eslint/explicit-module-boundary-types': 'off',
+    'react/jsx-tag-spacing': [2, {
+      'beforeSelfClosing': 'always',
+      'beforeClosing': 'never',
+    }],
     'comma-dangle': ['error', 'always-multiline'],
+    'sort-imports':
+     [
+       'error',
+       {
+         'ignoreCase': true,
+         'ignoreDeclarationSort': true,
+       },
+     ],
+    'import/order': ['error', {
+      'groups': ['builtin', 'external', 'internal', 'parent', 'sibling', 'index', 'object', 'type'],
+      'pathGroups': [
+        {
+          'pattern': '@/**',
+          'group': 'internal',
+          'position': 'after',
+        },
+      ],
+      'newlines-between': 'always',
+    }],
+    'import/no-unresolved': 'error',
   },
-  'parser': '@typescript-eslint/parser',
   'settings': {
     'react': {
-      'createClass': 'createReactClass',
-      'pragma': 'React',
-      'fragment': 'Fragment',
       'version': 'detect',
-      'flowVersion': '0.53',
+    },
+    'import/parsers': {
+      '@typescript-eslint/parser': ['.ts', '.tsx'],
+    },
+    'import/resolver': {
+      'typescript': {
+        'alwaysTryTypes': true,
+      },
     },
   },
 }
