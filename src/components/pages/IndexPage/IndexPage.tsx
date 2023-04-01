@@ -1,7 +1,10 @@
-export const IndexPage = () => {
-  return (
+export const IndexPage = () => (
+  <div className="index-page">
     <div>
-      This is index page
+      <input type="text" placeholder="Поиск" />
     </div>
-  )
-}
+    <main>
+
+    </main>
+  </div>
+)

@@ -1,5 +1,5 @@
 export const CharacterPage = () => (
-  <div>
+  <main>
     This is the CharacterPage
-  </div>
+  </main>
 )
