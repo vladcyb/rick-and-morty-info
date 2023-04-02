@@ -1,3 +1,4 @@
+import Card from 'react-bootstrap/Card'
 import { Character } from 'rickmortyapi'
 
 interface ICharacterCardProps {
@@ -5,11 +6,11 @@ interface ICharacterCardProps {
 }
 
 export const CharacterCard = ({ data: { image, gender, name } }: ICharacterCardProps) => (
-  <div className="character-card card">
-    <img className="card-img" src={image} alt={name} />
-    <div className="card-body">
-      <div className="card-title fw-bold">{name}</div>
-      <div>{gender}</div>
-    </div>
-  </div>
+  <Card className="character-card">
+    <Card.Img src={image} alt={name} />
+    <Card.Body>
+      <Card.Title>{name}</Card.Title>
+      <Card.Text>{gender}</Card.Text>
+    </Card.Body>
+  </Card>
 )

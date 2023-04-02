@@ -1,6 +1,7 @@
 
 import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
+import Form from 'react-bootstrap/Form'
 
 import { getCharacters } from '@slices/characterSlice/selectors'
 import { useAppDispatch } from '@app/slices'
@@ -24,7 +25,7 @@ export const IndexPage = () => {
     <div className="index-page">
       <div className="border-bottom">
         <div className="mx-auto w-50 py-5">
-          <input className="form-control" type="text" placeholder="Поиск" />
+          <Form.Control placeholder="Поиск" />
         </div>
       </div>
       <main className="index-page__main mt-3 px-5">
