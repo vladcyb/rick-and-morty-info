@@ -2,7 +2,6 @@
 import { useSelector } from 'react-redux'
 import Form from 'react-bootstrap/Form'
 import { Pagination } from 'react-bootstrap'
-import { Navigate, useSearchParams } from 'react-router-dom'
 import { useEffect } from 'react'
 
 import { getCharacters } from '@slices/characterSlice/selectors'
@@ -16,21 +15,18 @@ function getPageInRange(newPageValue: number, countOfPages: number) {
   return Math.min(Math.max(newPageValue, 1), countOfPages)
 }
 
-export const CharacterListPage = () => {
-  const dispatch = useAppDispatch()
+interface ICharacterListPageProps {
+  page: number
+}
 
-  const [searchParams] = useSearchParams()
-  const page = parseInt(searchParams.get('page') as string)
+export const CharacterListPage = ({ page }: ICharacterListPageProps) => {
+  const dispatch = useAppDispatch()
 
   useEffect(() => {
     dispatch(thunks.character.getCharacters({ page }))
   }, [page])
 
   const characters = useSelector(getCharacters)
-
-  if (typeof page !== 'number' || isNaN(page)) {
-    return <Navigate to="?page=1" replace={true} />
-  }
 
   const countOfPages = characters.info?.pages
 

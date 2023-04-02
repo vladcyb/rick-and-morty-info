@@ -1,8 +1,9 @@
 import { RouteObject } from 'react-router-dom'
 
 import { Layout } from '@app/Layout'
-import { CharacterListPage } from '@components/pages/CharacterListPage'
 import { CharacterPage } from '@components/pages/CharacterPage'
+
+import { CharacterListPageContainer } from './components/pages/CharacterListPage/CharacterListPageContainer'
 
 export const routes: RouteObject[] = [
   {
@@ -11,7 +12,7 @@ export const routes: RouteObject[] = [
     children: [
       {
         path: '',
-        element: <CharacterListPage />,
+        element: <CharacterListPageContainer />,
       },
       {
         path: 'character',
