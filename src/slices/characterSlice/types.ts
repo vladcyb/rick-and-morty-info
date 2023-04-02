@@ -1,3 +1,3 @@
-import { Character } from 'rickmortyapi'
+import { Character, Info } from 'rickmortyapi'
 
-export type StateType = Character[]
+export type StateType = Info<Character[]>

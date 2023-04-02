@@ -1,7 +1,17 @@
 .index-page {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+
   &__main {
     display: flex;
     align-items: stretch;
+    flex-grow: 1;
+  }
+
+  &__main-content {
+    margin: 0 auto;
+    flex-basis: 80%;
   }
 
   &__sidebar {
@@ -9,11 +19,8 @@
   }
 
   &__characters {
-    margin: 0 auto;
-    flex-basis: 80%;
     display: grid;
     grid-template-columns: repeat(auto-fit, 250px);
-    justify-content: center;
     gap: 30px;
   }
 }

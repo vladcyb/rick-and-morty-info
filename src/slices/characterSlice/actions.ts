@@ -1,6 +1,7 @@
 import { createAction } from '@reduxjs/toolkit'
-import { Character } from 'rickmortyapi'
+
+import { StateType } from './types'
 
 export const actions = {
-  set: createAction<Character[]>('characters/set'),
+  set: createAction<StateType>('characters/set'),
 }
