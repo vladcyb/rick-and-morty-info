@@ -8,7 +8,8 @@
       "@pages/*": ["src/pages/*"],
       "@assets/*": ["src/assets/*"],
       "@services/*": ["src/services/*"],
-      "@shared/*": ["src/shared/*"]
+      "@shared/*": ["src/shared/*"],
+      "@slices/*": ["src/slices/*"],
     },
     "moduleResolution": "Node"
   }

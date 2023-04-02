@@ -92,6 +92,25 @@ module.exports = {
       'newlines-between': 'always',
     }],
     'import/no-unresolved': 'error',
+    'keyword-spacing': ['error', {
+      'before': true,
+      'after': true,
+    }],
+    'arrow-spacing': ['error', {
+      'before': true,
+      'after': true,
+    }],
+    'space-infix-ops': ['error', { 'int32Hint': false }],
+    'space-before-blocks': ['error', 'always'],
+    'padding-line-between-statements': [
+      'error',
+      {
+        'blankLine': 'always',
+        'prev': '*',
+        'next': 'export',
+      },
+    ],
+    'jsx-quotes': ['error', 'prefer-double'],
   },
   'settings': {
     'react': {

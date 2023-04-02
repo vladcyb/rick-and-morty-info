@@ -3,6 +3,8 @@ import { Outlet } from 'react-router-dom'
 
 import { PageHeader } from '@components/PageHeader'
 
+import './Layout.scss'
+
 export const Layout = () => (
   <div className="layout">
     <PageHeader />
