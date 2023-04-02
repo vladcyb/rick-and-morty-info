@@ -10,13 +10,13 @@ import { useAppDispatch } from '@app/slices'
 import { CharacterCard } from '@app/components/CharacterCard'
 import { thunks } from '@app/slices/thunks'
 
-import './IndexPage.scss'
+import './CharacterListPage.scss'
 
 function getPageInRange(newPageValue: number, countOfPages: number) {
   return Math.min(Math.max(newPageValue, 1), countOfPages)
 }
 
-export const IndexPage = () => {
+export const CharacterListPage = () => {
   const dispatch = useAppDispatch()
 
   const [searchParams] = useSearchParams()
