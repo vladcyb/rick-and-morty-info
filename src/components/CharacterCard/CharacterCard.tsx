@@ -6,7 +6,7 @@ interface ICharacterCardProps {
 }
 
 export const CharacterCard = ({ data: { image, gender, name } }: ICharacterCardProps) => (
-  <Card className="character-card">
+  <Card>
     <Card.Img src={image} alt={name} />
     <Card.Body>
       <Card.Title>{name}</Card.Title>

@@ -10,6 +10,7 @@ import { CharacterCard } from '@app/components/CharacterCard'
 
 
 import './IndexPage.scss'
+import { Pagination } from 'react-bootstrap'
 
 export const IndexPage = () => {
   const dispatch = useAppDispatch()
@@ -28,13 +29,14 @@ export const IndexPage = () => {
           <Form.Control placeholder="Поиск" />
         </div>
       </div>
-      <main className="index-page__main mt-3 px-5">
-        <div className="index-page__sidebar">
+      <main className="index-page__main">
+        <div className="index-page__sidebar border-end py-5 px-3">
           Filters
         </div>
-        <div className="index-page__characters">
+        <div className="index-page__characters pt-5 px-4">
           {characters.map(item => <CharacterCard data={item} key={item.id} />)}
         </div>
+        <Pagination></Pagination>
       </main>
     </div>
   )
