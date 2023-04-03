@@ -3,6 +3,7 @@ import Pagination from 'react-bootstrap/Pagination'
 import { useSelector } from 'react-redux'
 import { useSearchParams } from 'react-router-dom'
 
+import { Filters } from '@components/pages/CharacterListPage/Filters'
 import { CharacterCard } from '@sharedComponents/CharacterCard'
 import { getCharacters } from '@slices/characterSlice/selectors'
 import { useAppDispatch } from '@app/slices'
@@ -51,8 +52,9 @@ export const CharacterListPage = () => {
     dispatch(thunks.character.getCharacters({
       page: currentPage,
       name: searchName,
+      status: searchParams.get('status') ?? '',
     }))
-  }, [currentPage, searchName])
+  }, [searchParams])
 
   return (
     <div className="index-page">
@@ -63,7 +65,7 @@ export const CharacterListPage = () => {
       </div>
       <main className="index-page__main">
         <div className="index-page__sidebar border-end py-5 px-3">
-          Filters
+          <Filters />
         </div>
         <div className="index-page__main-content pt-5 px-4">
           <div className="index-page__characters">

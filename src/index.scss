@@ -5,3 +5,9 @@
 body {
   min-height: 100vh;
 }
+
+input[type="checkbox"],
+input[type="checkbox"] + label {
+  cursor: pointer;
+  user-select: none;
+}
