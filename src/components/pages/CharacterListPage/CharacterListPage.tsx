@@ -67,7 +67,11 @@ export const CharacterListPage = () => {
         </div>
         <div className="index-page__main-content pt-5 px-4">
           <div className="index-page__characters">
-            {characters.results?.map(item => <CharacterCard data={item} key={item.id} />)}
+            {characters.results?.length ? (
+              characters.results.map(item => <CharacterCard data={item} key={item.id} />)
+            ) : (
+              <>Ничего не найдено.</>
+            )}
           </div>
           <Pagination className="mt-4">
             <Pagination.Prev
