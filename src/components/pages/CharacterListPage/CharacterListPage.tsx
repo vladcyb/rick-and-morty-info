@@ -3,9 +3,9 @@ import Pagination from 'react-bootstrap/Pagination'
 import { useSelector } from 'react-redux'
 import { useSearchParams } from 'react-router-dom'
 
+import { CharacterCard } from '@sharedComponents/CharacterCard'
 import { getCharacters } from '@slices/characterSlice/selectors'
 import { useAppDispatch } from '@app/slices'
-import { CharacterCard } from '@app/components/CharacterCard'
 import { thunks } from '@app/slices/thunks'
 
 import { Search } from './Search'

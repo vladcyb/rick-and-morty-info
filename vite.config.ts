@@ -13,7 +13,7 @@ export default defineConfig({
       '@pages': resolve(__dirname, 'src/pages'),
       '@assets': resolve(__dirname, 'src/assets'),
       '@services': resolve(__dirname, 'src/services'),
-      '@shared': resolve(__dirname, 'src/shared'),
+      '@sharedComponents': resolve(__dirname, 'src/components/shared'),
       '@slices': resolve(__dirname, 'src/slices'),
     },
   },
