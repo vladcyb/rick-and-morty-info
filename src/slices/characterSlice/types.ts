@@ -1,3 +1,5 @@
 import { Character, Info } from 'rickmortyapi'
 
-export type StateType = Info<Character[]>
+export type StateType = {
+  data: Info<Character[]>
+}

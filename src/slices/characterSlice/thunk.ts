@@ -6,7 +6,7 @@ import { actions } from './actions'
 
 export const CharacterThunk = {
   getCharacters: createAsyncThunk<void, CharacterFilter | undefined>(
-    'character/get',
+    'characters/get',
     async (params, { dispatch }) => {
       const response = await getCharacters(params)
       dispatch(actions.set(response.data ?? []))
