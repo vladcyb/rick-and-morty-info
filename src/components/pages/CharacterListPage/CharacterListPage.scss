@@ -12,6 +12,9 @@
   &__main-content {
     margin: 0 auto;
     flex-basis: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
   }
 
   &__sidebar {
