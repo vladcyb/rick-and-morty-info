@@ -1,7 +1,6 @@
-
 import { useEffect, useMemo } from 'react'
+import Pagination from 'react-bootstrap/Pagination'
 import { useSelector } from 'react-redux'
-import { Pagination } from 'react-bootstrap'
 import { useSearchParams } from 'react-router-dom'
 
 import { getCharacters } from '@slices/characterSlice/selectors'
