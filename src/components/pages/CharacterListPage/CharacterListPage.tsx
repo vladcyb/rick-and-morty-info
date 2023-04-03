@@ -25,7 +25,7 @@ export const CharacterListPage = () => {
     data: characters,
   } = useSelector(getCharacters)
 
-  const [searchParams] = useSearchParams()
+  const [searchParams, setSearchParams] = useSearchParams()
 
   const countOfPages = characters.info?.pages
 
@@ -34,7 +34,6 @@ export const CharacterListPage = () => {
   const currentPage = parseInt(searchPage)
 
   const paginationLinks = useMemo(() => {
-
     const getPrevOrNextPageLink = (isPrev: boolean) => {
       let query = `?page=${getPageInRange(currentPage + (-1) ** Number(isPrev), countOfPages ?? 1)}`
       if (searchName) {
@@ -72,8 +71,14 @@ export const CharacterListPage = () => {
             {characters.results?.map(item => <CharacterCard data={item} key={item.id} />)}
           </div>
           <Pagination className="mt-4">
-            <Pagination.Prev href={paginationLinks.prev} disabled={currentPage === 1} />
-            <Pagination.Next href={paginationLinks.next} disabled={currentPage === countOfPages} />
+            <Pagination.Prev
+              disabled={currentPage === 1}
+              onClick={() => setSearchParams(paginationLinks.prev)}
+            />
+            <Pagination.Next
+              disabled={currentPage === countOfPages}
+              onClick={() => setSearchParams(paginationLinks.next)}
+            />
           </Pagination>
         </div>
       </main>

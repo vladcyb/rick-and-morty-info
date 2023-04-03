@@ -13,7 +13,7 @@ export const Search = () => {
     const newSearchParams = new URLSearchParams(searchParams)
     newSearchParams.set('page', '1')
     newSearchParams.set('name', value)
-    setSearchParams(newSearchParams.toString(), { replace: true })
+    setSearchParams(newSearchParams.toString())
   }, [searchParams])
 
   const debouncedCallback = useDebouncedCallback((value: string) => handleChange(value), 300)
