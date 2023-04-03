@@ -1,20 +1,23 @@
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import InputGroup from 'react-bootstrap/InputGroup'
-import { useCallback, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { useDebouncedCallback } from 'use-debounce'
 import { useSearchParams } from 'react-router-dom'
 
 export const Search = () => {
   const [searchParams, setSearchParams] = useSearchParams()
-  const [search, setSearch] = useState(searchParams.get('name') ?? '')
+  const name = searchParams.get('name') ?? ''
+  const [search, setSearch] = useState(name)
 
   const handleChange = useCallback((value: string) => {
     const newSearchParams = new URLSearchParams(searchParams)
     newSearchParams.set('page', '1')
     newSearchParams.set('name', value)
-    setSearchParams(newSearchParams.toString())
+    setSearchParams(newSearchParams.toString(), { replace: true })
   }, [searchParams])
+
+  useEffect(() => setSearch(name), [name])
 
   const debouncedCallback = useDebouncedCallback((value: string) => handleChange(value), 300)
 
