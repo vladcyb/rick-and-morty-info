@@ -1,19 +1,22 @@
 import Form from 'react-bootstrap/Form'
-import { useRef, useState } from 'react'
+import Button from 'react-bootstrap/Button'
+import InputGroup from 'react-bootstrap/InputGroup'
+import { useCallback, useRef, useState } from 'react'
 import { useDebouncedCallback } from 'use-debounce'
 import { useSearchParams } from 'react-router-dom'
-import { Button, InputGroup } from 'react-bootstrap'
 
 export const Search = () => {
   const [searchParams, setSearchParams] = useSearchParams()
   const [search, setSearch] = useState(searchParams.get('name') ?? '')
 
-  const debouncedCallback = useDebouncedCallback((value: string) => {
+  const handleChange = useCallback((value: string) => {
     const newSearchParams = new URLSearchParams(searchParams)
-    newSearchParams.set('name', value)
     newSearchParams.set('page', '1')
-    setSearchParams(`?${newSearchParams.toString()}`)
-  }, 300)
+    newSearchParams.set('name', value)
+    setSearchParams(newSearchParams.toString(), { replace: true })
+  }, [searchParams])
+
+  const debouncedCallback = useDebouncedCallback((value: string) => handleChange(value), 300)
 
   const ref = useRef<HTMLInputElement>(null)
 
@@ -32,6 +35,7 @@ export const Search = () => {
         variant="outline-secondary"
         onClick={() => {
           setSearch('')
+          handleChange('')
           ref.current?.focus()
         }}
       >

@@ -18,11 +18,7 @@ function getPageInRange(newPageValue: number, countOfPages: number) {
   return Math.min(Math.max(newPageValue, 1), countOfPages)
 }
 
-interface ICharacterListPageProps {
-  page: number
-}
-
-export const CharacterListPage = ({ page }: ICharacterListPageProps) => {
+export const CharacterListPage = () => {
   const dispatch = useAppDispatch()
 
   const {
@@ -34,13 +30,17 @@ export const CharacterListPage = ({ page }: ICharacterListPageProps) => {
   const countOfPages = characters.info?.pages
 
   const searchName = searchParams.get('name') ?? ''
-  const searchPage = searchParams.get('page') ?? ''
+  const searchPage = searchParams.get('page') ?? '1'
+  const currentPage = parseInt(searchPage)
 
   const paginationLinks = useMemo(() => {
-    const currentPage = parseInt(searchPage)
 
     const getPrevOrNextPageLink = (isPrev: boolean) => {
-      return `?page=${getPageInRange(currentPage + (-1) ** Number(isPrev), countOfPages ?? 1)}&name=${searchName}`
+      let query = `?page=${getPageInRange(currentPage + (-1) ** Number(isPrev), countOfPages ?? 1)}`
+      if (searchName) {
+        query += `&name=${searchName}`
+      }
+      return query
     }
 
     return {
@@ -51,11 +51,10 @@ export const CharacterListPage = ({ page }: ICharacterListPageProps) => {
 
   useEffect(() => {
     dispatch(thunks.character.getCharacters({
-      page,
+      page: currentPage,
       name: searchName,
     }))
-  }, [page, searchName])
-
+  }, [currentPage, searchName])
 
   return (
     <div className="index-page">
@@ -73,8 +72,8 @@ export const CharacterListPage = ({ page }: ICharacterListPageProps) => {
             {characters.results?.map(item => <CharacterCard data={item} key={item.id} />)}
           </div>
           <Pagination className="mt-4">
-            <Pagination.Prev href={paginationLinks.prev} disabled={page == 1} />
-            <Pagination.Next href={paginationLinks.next} disabled={page == countOfPages} />
+            <Pagination.Prev href={paginationLinks.prev} disabled={currentPage === 1} />
+            <Pagination.Next href={paginationLinks.next} disabled={currentPage === countOfPages} />
           </Pagination>
         </div>
       </main>
