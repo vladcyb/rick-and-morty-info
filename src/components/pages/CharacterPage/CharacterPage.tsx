@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react'
+import Button from 'react-bootstrap/Button'
 import Container from 'react-bootstrap/Container'
 import Card from 'react-bootstrap/Card'
-import { Link, useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { Character, getCharacter } from 'rickmortyapi'
 
 import { MapGenderToRussian } from '@app/shared/constants/Genders'
@@ -14,6 +15,7 @@ export const CharacterPage = () => {
   const [data, setData] = useState<Nullable<Character>>(null)
 
   const params = useParams()
+  const navigate = useNavigate()
 
   useEffect(() => {
     getCharacter(Number(params.id))
@@ -26,7 +28,13 @@ export const CharacterPage = () => {
 
   return (
     <Container className="character-page" as="main">
-      <Link className="my-3 d-inline-block" to="/">На главную</Link>
+      <Button
+        className="my-3"
+        onClick={() => navigate(-1)}
+        variant="link"
+      >
+        Назад
+      </Button>
       {data && (
         <Card className="character-page__card">
           <Card.Body className="d-flex">
