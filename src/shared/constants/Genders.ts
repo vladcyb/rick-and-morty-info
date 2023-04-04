@@ -7,5 +7,4 @@ export const MapGenderToRussian: Record<Gender, string> = {
   'Male': 'мужской',
   'Female': 'женский',
   'unknown': 'неизвестно',
-  '': '',
 }

@@ -3,12 +3,13 @@ import Form from 'react-bootstrap/Form'
 import { useSearchParams } from 'react-router-dom'
 import { useDebouncedCallback } from 'use-debounce'
 
+import { Nullable } from '@app/shared/types'
 import { Gender } from '@app/shared/types/CharacterTypes'
 import { genders, MapGenderToRussian } from '@app/shared/constants/Genders'
 
 export const GenderFilter = () => {
   const [searchParams, setSearchParams] = useSearchParams()
-  const [gender, setGender] = useState<Gender>(searchParams.get('gender') as Gender)
+  const [gender, setGender] = useState<Nullable<Gender>>(searchParams.get('gender') as Nullable<Gender>)
 
   const handleChangeParams = useDebouncedCallback((status: string, checked: boolean, name: string) => {
     const newSearchParams = new URLSearchParams(searchParams)
@@ -28,7 +29,7 @@ export const GenderFilter = () => {
           key={item}
           onChange={(e) => {
             const { checked } = e.target
-            setGender(checked ? e.target.name.replace('gender-', '') as Gender : '')
+            setGender(checked ? e.target.name.replace('gender-', '') as Gender : null)
             handleChangeParams(item, checked, item)
           }}
           checked={gender === item}
