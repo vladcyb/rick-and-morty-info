@@ -3,6 +3,7 @@ import Form from 'react-bootstrap/Form'
 import { genders, MapGenderToRussian } from '@app/shared/constants/Genders'
 import { characterStatuses, MapCharacterStatusToRussian } from '@app/shared/constants/CharacterStatuses'
 
+import { ResetButton } from './ResetButton'
 import { AsideFilter } from './AsideFilter'
 
 
@@ -20,5 +21,6 @@ export const AsideFilters = () => (
       label="Пол"
       getItemLabel={(item) => MapGenderToRussian[item]}
     />
+    <ResetButton />
   </Form>
 )

@@ -1,6 +1,6 @@
 // eslint-disable-next-line import/no-named-as-default
 import clsx from 'clsx'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Collapse from 'react-bootstrap/Collapse'
 import Form from 'react-bootstrap/Form'
 import { useSearchParams } from 'react-router-dom'
@@ -29,6 +29,10 @@ export const AsideFilter = <T extends string>({ label, filterKey, items, getItem
     setSearchParams(newSearchParams)
   }, 300)
 
+  useEffect(() => {
+    setValue(searchParams.get(filterKey) as Nullable<T>)
+  }, [searchParams])
+
   return (
     <Form.Group className={clsx('aside-filter', { 'aside-filter_open': open })}>
       <button
@@ -40,7 +44,7 @@ export const AsideFilter = <T extends string>({ label, filterKey, items, getItem
           {label}
         </small>
       </button>
-      <Collapse in={open}>
+      <Collapse in={open} timeout={300}>
         <div className="py-2">
           {items.map((item) => (
             <Form.Check
