@@ -25,6 +25,7 @@ export const AsideFilter = <T extends string>({ label, filterKey, items, getItem
   const handleChangeParams = useDebouncedCallback((status: string, checked: boolean, name: string) => {
     const newSearchParams = new URLSearchParams(searchParams)
     newSearchParams.set(filterKey, checked ? name : '')
+    newSearchParams.set('page', '1')
     setSearchParams(newSearchParams)
   }, 300)
 

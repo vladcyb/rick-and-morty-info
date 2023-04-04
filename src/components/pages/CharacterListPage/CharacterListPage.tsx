@@ -34,12 +34,12 @@ export const CharacterListPage = () => {
   const currentPage = parseInt(searchPage)
 
   const paginationLinks = useMemo(() => {
+    const newSarchParams = new URLSearchParams(searchParams)
+
     const getPrevOrNextPageLink = (isPrev: boolean) => {
-      let query = `?page=${getPageInRange(currentPage + (-1) ** Number(isPrev), countOfPages ?? 1)}`
-      if (searchName) {
-        query += `&name=${searchName}`
-      }
-      return query
+      newSarchParams.set('page', getPageInRange(currentPage + (-1) ** Number(isPrev), countOfPages ?? 1).toString())
+      newSarchParams.set('name', searchName)
+      return newSarchParams.toString()
     }
 
     return {
