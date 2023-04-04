@@ -32,7 +32,7 @@ module.exports = {
     'no-multi-spaces': 'error',
     'indent': [
       'error', 2, {
-        SwitchCase: 1,
+        'SwitchCase': 1,
       },
     ],
     'object-curly-spacing': ['error', 'always'],
