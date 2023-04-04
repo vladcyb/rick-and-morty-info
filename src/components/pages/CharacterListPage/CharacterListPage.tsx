@@ -58,18 +58,18 @@ export const CharacterListPage = () => {
   }, [searchParams])
 
   return (
-    <div className="index-page">
+    <div className="characters-list-page">
       <div className="border-bottom">
         <div className="mx-auto w-50 py-4">
           <Search />
         </div>
       </div>
-      <main className="index-page__main">
-        <div className="index-page__sidebar border-end py-5 px-3">
+      <main className="characters-list-page__main">
+        <div className="characters-list-page__sidebar border-end py-5 px-3">
           <AsideFilters />
         </div>
-        <div className="index-page__main-content pt-5 px-4">
-          <div className="index-page__characters">
+        <div className="characters-list-page__main-content pt-5 px-4">
+          <div className="characters-list-page__characters">
             {characters.results?.length ? (
               characters.results.map(item => <CharacterCard data={item} key={item.id} />)
             ) : (
