@@ -1,17 +1,10 @@
 import Card from 'react-bootstrap/Card'
 import { Character } from 'rickmortyapi'
 
+import { MapGenderToRussian } from '@app/shared/constants/Genders'
+
 interface ICharacterCardProps {
   data: Character
-}
-
-type Gender = Character['gender']
-
-const genderToRussian: Record<Gender, string> = {
-  Female: 'женский',
-  Male: 'мужской',
-  Genderless: 'бесполый',
-  unknown: 'неизвестно',
 }
 
 export const CharacterCard = ({ data: { id, image, gender, name } }: ICharacterCardProps) => (
@@ -20,7 +13,7 @@ export const CharacterCard = ({ data: { id, image, gender, name } }: ICharacterC
     <Card.Body>
       <Card.Title>{name}</Card.Title>
       <Card.Text>
-        <div>Пол: {genderToRussian[gender]}</div>
+        <div>Пол: {MapGenderToRussian[gender]}</div>
         <div>Id: {id}</div>
       </Card.Text>
     </Card.Body>
