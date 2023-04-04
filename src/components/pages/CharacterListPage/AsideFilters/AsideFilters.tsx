@@ -1,8 +1,9 @@
 import Form from 'react-bootstrap/Form'
 
-import { AsideFilter } from '@sharedComponents/AsideFilter/AsideFilter'
 import { genders, MapGenderToRussian } from '@app/shared/constants/Genders'
 import { characterStatuses, MapCharacterStatusToRussian } from '@app/shared/constants/CharacterStatuses'
+
+import { AsideFilter } from './AsideFilter'
 
 
 export const AsideFilters = () => (

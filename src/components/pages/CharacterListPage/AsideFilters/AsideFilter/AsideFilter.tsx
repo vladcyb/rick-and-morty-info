@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/no-named-as-default
 import clsx from 'clsx'
 import { useState } from 'react'
 import Collapse from 'react-bootstrap/Collapse'
