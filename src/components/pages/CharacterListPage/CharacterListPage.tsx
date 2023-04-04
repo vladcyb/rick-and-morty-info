@@ -53,6 +53,7 @@ export const CharacterListPage = () => {
       page: currentPage,
       name: searchName,
       status: searchParams.get('status') ?? '',
+      gender: searchParams.get('gender') ?? '',
     }))
   }, [searchParams])
 

@@ -1,6 +1,6 @@
-export const CharacterStatuses = <const>['Alive', 'Dead', 'unknown']
+export const characterStatuses = <const>['Alive', 'Dead', 'unknown']
 
-export const MapCharacterStatusToRussian: Record<typeof CharacterStatuses[number], string> = {
+export const MapCharacterStatusToRussian: Record<typeof characterStatuses[number], string> = {
   unknown: 'неизвестно',
   Alive: 'жив',
   Dead: 'мертв',
