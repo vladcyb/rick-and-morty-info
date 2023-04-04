@@ -3,36 +3,41 @@ import Form from 'react-bootstrap/Form'
 import { useSearchParams } from 'react-router-dom'
 import { useDebouncedCallback } from 'use-debounce'
 
-import { CharacterStatus } from '@app/shared/types/CharacterTypes'
 import { Nullable } from '@app/shared/types'
-import { characterStatuses, MapCharacterStatusToRussian } from '@app/shared/constants/CharacterStatuses'
 
-export const StatusFilter = () => {
+interface IFilterProps<T extends string> {
+  label: string
+  filterKey: string
+  items: T[]
+  getItemLabel: (item: T) => string
+}
+
+export const Filter = <T extends string>({ label, filterKey, items, getItemLabel }: IFilterProps<T>) => {
   const [searchParams, setSearchParams] = useSearchParams()
-  const [status, setStatus] = useState<Nullable<CharacterStatus>>(searchParams.get('status') as Nullable<CharacterStatus>)
+  const [value, setValue] = useState<Nullable<T>>(searchParams.get(filterKey) as Nullable<T>)
 
   const handleChangeParams = useDebouncedCallback((status: string, checked: boolean, name: string) => {
     const newSearchParams = new URLSearchParams(searchParams)
-    newSearchParams.set('status', checked ? name : '')
+    newSearchParams.set(filterKey, checked ? name : '')
     setSearchParams(newSearchParams)
   }, 300)
 
   return (
     <Form.Group>
-      <Form.Label>Статус</Form.Label>
-      {characterStatuses.map((item) => (
+      <Form.Label>{label}</Form.Label>
+      {items.map((item) => (
         <Form.Check
           type="checkbox"
-          label={MapCharacterStatusToRussian[item]}
-          name={`status-${item}`}
-          id={`status-${item}`}
+          label={getItemLabel(item)}
+          name={`${filterKey}-${item}`}
+          id={`${filterKey}-${item}`}
           key={item}
           onChange={(e) => {
             const { checked } = e.target
-            setStatus(checked ? e.target.name.replace('status-', '') as CharacterStatus : null)
+            setValue(checked ? e.target.name.replace(`${filterKey}-`, '') as T : null)
             handleChangeParams(item, checked, item)
           }}
-          checked={status === item}
+          checked={value === item}
         />
       ))}
     </Form.Group>
