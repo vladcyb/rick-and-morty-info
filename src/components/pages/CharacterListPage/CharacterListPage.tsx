@@ -3,12 +3,12 @@ import Pagination from 'react-bootstrap/Pagination'
 import { useSelector } from 'react-redux'
 import { useSearchParams } from 'react-router-dom'
 
-import { Filters } from '@components/pages/CharacterListPage/Filters'
 import { CharacterCard } from '@sharedComponents/CharacterCard'
 import { getCharacters } from '@slices/characterSlice/selectors'
 import { useAppDispatch } from '@app/slices'
 import { thunks } from '@app/slices/thunks'
 
+import { AsideFilters } from './AsideFilters'
 import { Search } from './Search'
 
 import './CharacterListPage.scss'
@@ -66,7 +66,7 @@ export const CharacterListPage = () => {
       </div>
       <main className="index-page__main">
         <div className="index-page__sidebar border-end py-5 px-3">
-          <Filters />
+          <AsideFilters />
         </div>
         <div className="index-page__main-content pt-5 px-4">
           <div className="index-page__characters">

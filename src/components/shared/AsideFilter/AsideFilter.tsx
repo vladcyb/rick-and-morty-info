@@ -16,7 +16,7 @@ interface IFilterProps<T extends string> {
   getItemLabel: (item: T) => string
 }
 
-export const Filter = <T extends string>({ label, filterKey, items, getItemLabel }: IFilterProps<T>) => {
+export const AsideFilter = <T extends string>({ label, filterKey, items, getItemLabel }: IFilterProps<T>) => {
   const [searchParams, setSearchParams] = useSearchParams()
   const [value, setValue] = useState<Nullable<T>>(searchParams.get(filterKey) as Nullable<T>)
   const [open, setOpen] = useState(true)
