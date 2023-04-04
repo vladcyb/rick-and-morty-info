@@ -14,7 +14,7 @@ export const routes: RouteObject[] = [
         element: <CharacterListPage />,
       },
       {
-        path: 'character',
+        path: 'character/:id',
         element: <CharacterPage />,
       },
     ],

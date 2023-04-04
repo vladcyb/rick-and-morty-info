@@ -1,0 +1,13 @@
+.characters-list-page-card {
+  &__title a:not(:hover) {
+    text-decoration: none;
+  }
+
+  &__title a {
+    color: var(--bs-card-color);
+  }
+
+  p {
+    margin: 0;
+  }
+}
