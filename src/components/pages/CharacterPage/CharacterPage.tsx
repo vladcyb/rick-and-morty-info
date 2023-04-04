@@ -37,6 +37,7 @@ export const CharacterPage = () => {
               <Card.Text>Пол: {MapGenderToRussian[data.gender]}</Card.Text>
               <Card.Text>Локация: {data.location.name}</Card.Text>
               <Card.Text>Происхождение: {data.origin.name}</Card.Text>
+              <Card.Text>Вид: {data.type}</Card.Text>
             </div>
           </Card.Body>
         </Card>
