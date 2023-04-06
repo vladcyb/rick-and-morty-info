@@ -1,3 +1,6 @@
+@use "../../../../node_modules/include-media/dist/include-media" as *;
+@use "../../../assets/scss/breakpoints" as *;
+
 .characters-list-page {
   flex-grow: 1;
   display: flex;
@@ -10,7 +13,6 @@
   }
 
   &__main-content {
-    margin: 0 auto;
     flex-basis: 80%;
     display: flex;
     flex-direction: column;
@@ -19,11 +21,25 @@
 
   &__sidebar {
     flex-basis: 300px;
+    flex-shrink: 0;
+
+    @include media("<lg") {
+      flex-basis: 250px;
+    }
+
+    @include media("<md") {
+      flex-basis: 200px;
+      font-size: 0.9rem;
+    }
   }
 
   &__characters {
     display: grid;
     grid-template-columns: repeat(auto-fit, 250px);
     gap: 30px;
+
+    @include media("<lg") {
+      grid-template-columns: repeat(auto-fit, 200px);
+    }
   }
 }

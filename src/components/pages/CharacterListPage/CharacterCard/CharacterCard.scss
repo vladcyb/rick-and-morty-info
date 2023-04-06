@@ -1,3 +1,6 @@
+@use "../../../../../node_modules/include-media/dist/include-media" as *;
+@use "../../../../assets/scss/breakpoints" as *;
+
 .characters-list-page-card {
   &__title a:not(:hover) {
     text-decoration: none;
@@ -5,6 +8,16 @@
 
   &__title a {
     color: var(--bs-card-color);
+  }
+
+  &__avatar {
+    height: calc(250px - var(--bs-card-border-width));
+    width: calc(250px - var(--bs-card-border-width));
+
+    @include media("<lg") {
+      height: calc(200px - var(--bs-card-border-width));
+    width: calc(200px - var(--bs-card-border-width));
+    }
   }
 
   p {

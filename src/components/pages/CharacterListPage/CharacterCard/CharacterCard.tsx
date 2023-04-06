@@ -13,7 +13,7 @@ interface ICharacterCardProps {
 export const CharacterCard = ({ data: { id, image, gender, name } }: ICharacterCardProps) => (
   <Card className="characters-list-page-card">
     <Link to={`character/${id}`}>
-      <Card.Img src={image} alt={name} />
+      <Card.Img className="characters-list-page-card__avatar" src={image} alt={name} />
     </Link>
     <Card.Body>
       <Card.Title className="characters-list-page-card__title">
