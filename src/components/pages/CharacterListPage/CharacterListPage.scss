@@ -20,26 +20,18 @@
   }
 
   &__sidebar {
-    flex-basis: 300px;
+    flex-basis: 250px;
     flex-shrink: 0;
-
-    @include media("<lg") {
-      flex-basis: 250px;
-    }
-
-    @include media("<md") {
-      flex-basis: 200px;
-      font-size: 0.9rem;
-    }
+    background: white;
   }
 
   &__characters {
     display: grid;
-    grid-template-columns: repeat(auto-fit, 250px);
+    grid-template-columns: repeat(auto-fit, 200px);
     gap: 30px;
 
-    @include media("<lg") {
-      grid-template-columns: repeat(auto-fit, 200px);
+    @include media(">=xl") {
+      grid-template-columns: repeat(auto-fit, 250px);
     }
   }
 }

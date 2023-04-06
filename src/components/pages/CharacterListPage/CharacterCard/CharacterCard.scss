@@ -11,12 +11,12 @@
   }
 
   &__avatar {
-    height: calc(250px - var(--bs-card-border-width));
-    width: calc(250px - var(--bs-card-border-width));
-
-    @include media("<lg") {
-      height: calc(200px - var(--bs-card-border-width));
+    height: calc(200px - var(--bs-card-border-width));
     width: calc(200px - var(--bs-card-border-width));
+
+    @include media(">=xl") {
+      height: calc(250px - var(--bs-card-border-width));
+      width: calc(250px - var(--bs-card-border-width));
     }
   }
 

@@ -1,9 +1,9 @@
 @use './node_modules/include-media/dist/include-media' as *;
 
-$breakpoint-sm: 720px;
-$breakpoint-md: 1024px;
-$breakpoint-lg: 1440px;
-$breakpoint-xl: 1920px;
+$breakpoint-sm: 576px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 992px;
+$breakpoint-xl: 1200px;
 
 $breakpoints: (
   sm: $breakpoint-sm,
