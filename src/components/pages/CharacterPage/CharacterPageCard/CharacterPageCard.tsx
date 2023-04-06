@@ -13,20 +13,11 @@ interface ICharacterPageCard {
 
 export const CharacterPageCard = ({ isLoading, data }: ICharacterPageCard) => {
   if (isLoading) {
-    return (
-      <Card className="character-page-card">
-        <Card.Body className="d-flex">
-          <img className="character-page-card__img" alt="Загрузка" />
-          <div className="ms-4">
-            Загрузка...
-          </div>
-        </Card.Body>
-      </Card>
-    )
+    return null
   }
 
   if (!data) {
-    return <>Ошибка.</>
+    return <div>Ошибка.</div>
   }
 
   return (
