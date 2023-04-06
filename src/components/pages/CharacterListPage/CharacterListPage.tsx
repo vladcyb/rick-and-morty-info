@@ -1,11 +1,8 @@
-import { useEffect, useMemo } from 'react'
 import Pagination from 'react-bootstrap/Pagination'
-import { useSelector } from 'react-redux'
 import { useSearchParams } from 'react-router-dom'
 
-import { getCharacters } from '@slices/characterSlice/selectors'
-import { useAppDispatch } from '@app/slices'
-import { thunks } from '@app/slices/thunks'
+import { QueryResult } from '@sharedComponents/QueryResult'
+import { useGetAllCharactersQuery } from '@app/api'
 
 import { CharacterCard } from './CharacterCard'
 import { AsideFilters } from './AsideFilters'
@@ -14,48 +11,36 @@ import { Search } from './Search'
 import './CharacterListPage.scss'
 
 
-function getPageInRange(newPageValue: number, countOfPages: number) {
-  return Math.min(Math.max(newPageValue, 1), countOfPages)
-}
-
 export const CharacterListPage = () => {
-  const dispatch = useAppDispatch()
-
-  const {
-    data: characters,
-  } = useSelector(getCharacters)
-
   const [searchParams, setSearchParams] = useSearchParams()
-
-  const countOfPages = characters.info?.pages
 
   const searchName = searchParams.get('name') ?? ''
   const searchPage = searchParams.get('page') ?? '1'
   const currentPage = parseInt(searchPage)
 
-  const paginationLinks = useMemo(() => {
-    const newSarchParams = new URLSearchParams(searchParams)
+  const queryResult = useGetAllCharactersQuery({
+    page: currentPage,
+    name: searchName,
+    status: searchParams.get('status') ?? '',
+    gender: searchParams.get('gender') ?? '',
+  })
+
+  const hasNext = !!queryResult?.data?.info?.next
+
+  const getPaginationLinks = () => {
+    const newSearchParams = new URLSearchParams(searchParams)
 
     const getPrevOrNextPageLink = (isPrev: boolean) => {
-      newSarchParams.set('page', getPageInRange(currentPage + (-1) ** Number(isPrev), countOfPages ?? 1).toString())
-      newSarchParams.set('name', searchName)
-      return newSarchParams.toString()
+      newSearchParams.set('page', (currentPage + (-1) ** Number(isPrev)).toString())
+      newSearchParams.set('name', searchName)
+      return newSearchParams.toString()
     }
 
     return {
       prev: getPrevOrNextPageLink(true),
       next: getPrevOrNextPageLink(false),
     }
-  }, [searchPage, countOfPages])
-
-  useEffect(() => {
-    dispatch(thunks.character.getCharacters({
-      page: currentPage,
-      name: searchName,
-      status: searchParams.get('status') ?? '',
-      gender: searchParams.get('gender') ?? '',
-    }))
-  }, [searchParams])
+  }
 
   return (
     <div className="characters-list-page">
@@ -69,21 +54,24 @@ export const CharacterListPage = () => {
           <AsideFilters />
         </div>
         <div className="characters-list-page__main-content pt-5 px-4">
-          <div className="characters-list-page__characters">
-            {characters.results?.length ? (
-              characters.results.map(item => <CharacterCard data={item} key={item.id} />)
-            ) : (
-              <>Ничего не найдено.</>
+          <QueryResult
+            data={queryResult.data?.results}
+            renderData={(data) => (
+              <div className="characters-list-page__characters">
+                {data.map((item) => <CharacterCard data={item} key={item.id} />)}
+              </div>
             )}
-          </div>
+            queryResult={queryResult}
+            isLoading={queryResult.isFetching}
+          />
           <Pagination className="mt-4">
             <Pagination.Prev
               disabled={currentPage === 1}
-              onClick={() => setSearchParams(paginationLinks.prev)}
+              onClick={() => setSearchParams(getPaginationLinks().prev)}
             />
             <Pagination.Next
-              disabled={currentPage === countOfPages}
-              onClick={() => setSearchParams(paginationLinks.next)}
+              disabled={!hasNext}
+              onClick={() => setSearchParams(getPaginationLinks().next)}
             />
           </Pagination>
         </div>
