@@ -1,6 +1,6 @@
-import Pagination from 'react-bootstrap/Pagination'
 import { useSearchParams } from 'react-router-dom'
 
+import { CharactersPagination } from '@components/pages/CharacterListPage/CharactersPagination'
 import { QueryResult } from '@sharedComponents/QueryResult'
 import { useGetAllCharactersQuery } from '@app/api'
 
@@ -12,7 +12,7 @@ import './CharacterListPage.scss'
 
 
 export const CharacterListPage = () => {
-  const [searchParams, setSearchParams] = useSearchParams()
+  const [searchParams] = useSearchParams()
 
   const searchName = searchParams.get('name') ?? ''
   const searchPage = searchParams.get('page') ?? '1'
@@ -24,23 +24,6 @@ export const CharacterListPage = () => {
     status: searchParams.get('status') ?? '',
     gender: searchParams.get('gender') ?? '',
   })
-
-  const hasNext = !!queryResult?.data?.info?.next
-
-  const getPaginationLinks = () => {
-    const newSearchParams = new URLSearchParams(searchParams)
-
-    const getPrevOrNextPageLink = (isPrev: boolean) => {
-      newSearchParams.set('page', (currentPage + (-1) ** Number(isPrev)).toString())
-      newSearchParams.set('name', searchName)
-      return newSearchParams.toString()
-    }
-
-    return {
-      prev: getPrevOrNextPageLink(true),
-      next: getPrevOrNextPageLink(false),
-    }
-  }
 
   return (
     <div className="characters-list-page">
@@ -64,16 +47,7 @@ export const CharacterListPage = () => {
             queryResult={queryResult}
             isLoading={queryResult.isFetching}
           />
-          <Pagination className="mt-4">
-            <Pagination.Prev
-              disabled={currentPage === 1}
-              onClick={() => setSearchParams(getPaginationLinks().prev)}
-            />
-            <Pagination.Next
-              disabled={!hasNext}
-              onClick={() => setSearchParams(getPaginationLinks().next)}
-            />
-          </Pagination>
+          <CharactersPagination currentPage={currentPage} queryResult={queryResult} />
         </div>
       </main>
     </div>
