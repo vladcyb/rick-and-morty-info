@@ -1,0 +1,1 @@
+export { CharacterPageCard } from './CharacterPageCard'

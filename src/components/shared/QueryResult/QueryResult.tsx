@@ -6,7 +6,7 @@ interface IQueryResultProps<T> {
   renderNotFound?: () => JSX.Element
   renderError?: () => JSX.Element
   renderLoading?: () => JSX.Element
-  isLoading?: boolean
+  isLoading: boolean
   queryResult: TypedUseQueryStateResult<any, unknown, any>
 }
 
@@ -21,6 +21,6 @@ export const QueryResult = <T,>({
 }: IQueryResultProps<T>) => (
     isLoading ? renderLoading() :
       queryResult.error?.status === 404 ? renderNotFound() :
-        queryResult.error ? renderError() :
-          renderData(data as T)
+        queryResult.error || !data ? renderError() :
+          renderData(data)
   )

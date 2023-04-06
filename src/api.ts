@@ -10,7 +10,13 @@ export const api = createApi({
     getAllCharacters: builder.query<Info<Character[]>, CharacterFilter>({
       query: (filter) => `character?${new URLSearchParams(filter as Record<string, string>).toString()}`,
     }),
+    getCharacter: builder.query<Character, number>({
+      query: (id) => `character/${id}`,
+    }),
   }),
 })
 
-export const { useGetAllCharactersQuery } = api
+export const {
+  useGetAllCharactersQuery,
+  useGetCharacterQuery,
+} = api
