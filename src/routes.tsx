@@ -1,8 +1,6 @@
 import { Navigate, RouteObject } from 'react-router-dom'
 
-import { CharacterListPage } from '@components/pages/CharacterListPage'
 import { Layout } from '@app/Layout'
-import { CharacterPage } from '@components/pages/CharacterPage'
 
 export const routes: RouteObject[] = [
   {
@@ -11,11 +9,17 @@ export const routes: RouteObject[] = [
     children: [
       {
         path: '',
-        element: <CharacterListPage />,
+        async lazy() {
+          const { CharacterListPage } = await import('@components/pages/CharacterListPage')
+          return { Component: CharacterListPage }
+        },
       },
       {
         path: 'character/:id',
-        element: <CharacterPage />,
+        async lazy() {
+          const { CharacterPage } = await import('@components/pages/CharacterPage')
+          return { Component: CharacterPage }
+        },
       },
       {
         path: '*',
