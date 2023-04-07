@@ -5,6 +5,9 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { CharacterPageCard } from '@components/pages/CharacterPage/CharacterPageCard'
 import { useGetCharacterQuery } from '@app/api'
 
+import './CharacterPage.scss'
+
+
 export const CharacterPage = () => {
   const params = useParams()
   const navigate = useNavigate()
@@ -20,7 +23,11 @@ export const CharacterPage = () => {
       >
         Назад
       </Button>
-      <CharacterPageCard isLoading={queryResult.isFetching} data={queryResult.data} />
+      <CharacterPageCard
+        className="character-page__card"
+        isLoading={queryResult.isFetching}
+        data={queryResult.data}
+      />
     </Container>
   )
 }

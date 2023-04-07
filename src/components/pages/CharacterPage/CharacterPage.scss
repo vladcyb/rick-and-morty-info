@@ -1,0 +1,12 @@
+@import 'node_modules/bootstrap/scss/functions';
+@import 'node_modules/bootstrap/scss/variables';
+@import 'node_modules/bootstrap/scss/mixins';
+
+.character-page {
+  padding-bottom: 200px;
+
+  &__card {
+    margin: 0 auto;
+    max-width: 400px;
+  }
+}

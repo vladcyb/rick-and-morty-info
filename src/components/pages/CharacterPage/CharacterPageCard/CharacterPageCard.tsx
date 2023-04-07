@@ -1,3 +1,4 @@
+import clsx from 'clsx'
 import Card from 'react-bootstrap/Card'
 import { Character } from 'rickmortyapi'
 
@@ -9,9 +10,10 @@ import './CharacterPageCard.scss'
 interface ICharacterPageCard {
   isLoading: boolean
   data?: Character
+  className?: string
 }
 
-export const CharacterPageCard = ({ isLoading, data }: ICharacterPageCard) => {
+export const CharacterPageCard = ({ isLoading, data, className }: ICharacterPageCard) => {
   if (isLoading) {
     return null
   }
@@ -21,10 +23,10 @@ export const CharacterPageCard = ({ isLoading, data }: ICharacterPageCard) => {
   }
 
   return (
-    <Card className="character-page-card">
-      <Card.Body className="d-flex">
-        <img className="character-page-card__img" src={data.image} alt={data.name} />
-        <div className="ms-4">
+    <Card className={clsx('character-page-card', className)}>
+      <Card.Img className="character-page-card__img" src={data.image} alt={data.name} />
+      <Card.Body className="character-page-card__body">
+        <div>
           <Card.Title>{data.name}</Card.Title>
           <Card.Text>Статус: {MapCharacterStatusToRussian[data.status]}</Card.Text>
           <Card.Text>Пол: {MapGenderToRussian[data.gender]}</Card.Text>
