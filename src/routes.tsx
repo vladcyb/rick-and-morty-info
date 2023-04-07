@@ -1,4 +1,4 @@
-import { RouteObject } from 'react-router-dom'
+import { Navigate, RouteObject } from 'react-router-dom'
 
 import { CharacterListPage } from '@components/pages/CharacterListPage'
 import { Layout } from '@app/Layout'
@@ -16,6 +16,10 @@ export const routes: RouteObject[] = [
       {
         path: 'character/:id',
         element: <CharacterPage />,
+      },
+      {
+        path: '*',
+        element: <Navigate to="/" />,
       },
     ],
   },
