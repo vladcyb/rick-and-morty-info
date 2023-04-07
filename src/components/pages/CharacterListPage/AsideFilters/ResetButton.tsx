@@ -1,7 +1,11 @@
 import Button from 'react-bootstrap/Button'
 import { useSearchParams } from 'react-router-dom'
 
-export const ResetButton = () => {
+interface IResetButtonProps {
+  close: () => void
+}
+
+export const ResetButton = ({ close }: IResetButtonProps) => {
   const [searchParams, setSearchParams] = useSearchParams()
 
   const handleClick = () => {
@@ -10,6 +14,7 @@ export const ResetButton = () => {
     newSearchParams.delete('status')
     newSearchParams.set('page', '1')
     setSearchParams(newSearchParams)
+    close()
   }
 
   return (

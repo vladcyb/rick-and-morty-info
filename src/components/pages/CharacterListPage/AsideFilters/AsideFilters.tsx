@@ -35,6 +35,6 @@ export const AsideFilters = ({ close, className }: IAsideFiltersProps) => (
       label="Пол"
       getItemLabel={(item) => MapGenderToRussian[item]}
     />
-    <ResetButton />
+    <ResetButton close={close} />
   </Form>
 )
