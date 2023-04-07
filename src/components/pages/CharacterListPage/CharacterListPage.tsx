@@ -3,7 +3,6 @@ import { useCallback, useEffect, useState } from 'react'
 import Button from 'react-bootstrap/Button'
 import { useSearchParams } from 'react-router-dom'
 
-import { CharactersPagination } from '@components/pages/CharacterListPage/CharactersPagination'
 import { QueryResult } from '@sharedComponents/QueryResult'
 import { useGetAllCharactersQuery } from '@app/api'
 
@@ -46,36 +45,37 @@ export const CharacterListPage = () => {
 
   return (
     <div className="characters-list-page">
-      <div className="border-bottom">
-        <div className="mx-auto w-50 py-4">
-          <Search />
+      <div className="border-bottom border-right border-left characters-list-page__controls">
+        <div className="w-100 px-2 pt-2 py-md-4 border-md-bottom">
+          <Search className="w-100 w-md-50 mx-auto" />
         </div>
-      </div>
-      <div className="p-2 d-md-none">
-        <Button className="w-100" variant="outline-dark" onClick={openFilters}>
+        <div className="p-2 d-md-none">
+          <Button className="w-100" variant="outline-dark" onClick={openFilters}>
           Фильтры
-        </Button>
+          </Button>
+        </div>
       </div>
       <main className="characters-list-page__main">
         <AsideFilters
           className={clsx(
-            'characters-list-page__sidebar',
+            'characters-list-page__sidebar border-end p-3 p-md-3',
             { 'characters-list-page__sidebar_open': areFiltersOpened },
           )}
           close={closeFilters}
         />
-        <div className="characters-list-page__main-content pt-5 px-4">
+        <div className="characters-list-page__main-content p-2 pt-0 p-md-3">
           <QueryResult
             data={queryResult.data?.results}
             renderData={(data) => (
               <div className="characters-list-page__characters">
-                {data.map((item) => <CharacterCard data={item} key={item.id} />)}
+                {data.map((item) => <CharacterCard className="characters-list-page__item" data={item} key={item.id} />)}
               </div>
             )}
             queryResult={queryResult}
             isLoading={queryResult.isFetching}
           />
-          <CharactersPagination currentPage={currentPage} queryResult={queryResult} />
+          {/*<CharactersPagination currentPage={currentPage} queryResult={queryResult} />*/}
+          {/* TODO */}
         </div>
       </main>
     </div>

@@ -12,32 +12,51 @@ input[type="checkbox"] + label {
   user-select: none;
 }
 
-.overflow-sm-scroll {
-  @include media-breakpoint-up(sm) {
-    overflow: scroll !important;
-  }
-}
+@each $breakpoint in map-keys($grid-breakpoints) {
+  @include media-breakpoint-up($breakpoint) {
+    $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
 
-.overflow-md-scroll {
-  @include media-breakpoint-up(md) {
-    overflow: scroll !important;
-  }
-}
+    .border#{$infix} {
+       border: $border-width solid $border-color !important;
+    }
+    .border#{$infix}-top {      border-top: $border-width solid $border-color !important; }
+    .border#{$infix}-right {    border-right: $border-width solid $border-color !important; }
+    .border#{$infix}-bottom {   border-bottom: $border-width solid $border-color !important; }
+    .border#{$infix}-left {     border-left: $border-width solid $border-color !important; }
 
-.overflow-lg-scroll {
-  @include media-breakpoint-up(lg) {
-    overflow: scroll !important;
-  }
-}
+    .border#{$infix}-top-0 {    border-top: 0 !important; }
+    .border#{$infix}-right-0 {  border-right: 0 !important; }
+    .border#{$infix}-bottom-0 { border-bottom: 0 !important; }
+    .border#{$infix}-left-0 {   border-left: 0 !important; }
 
-.overflow-xl-scroll {
-  @include media-breakpoint-up(xl) {
-    overflow: scroll !important;
-  }
-}
+    .border#{$infix}-x {
+      border-left: $border-width solid $border-color !important;
+      border-right: $border-width solid $border-color !important;
+    }
 
-.overflow-xxl-scroll {
-  @include media-breakpoint-up(xxl) {
-    overflow: scroll !important;
+    .border#{$infix}-y {
+      border-top: $border-width solid $border-color !important;
+      border-bottom: $border-width solid $border-color !important;
+    }
+
+    .overflow#{$infix}-scroll {
+      overflow: scroll !important;
+    }
+
+    .w#{$infix}-25 {
+      width: 25% !important;
+    }
+
+    .w#{$infix}-50 {
+      width: 50% !important;
+    }
+
+    .w#{$infix}-75 {
+      width: 75% !important;
+    }
+
+    .w#{$infix}-100 {
+      width: 100% !important;
+    }
   }
 }

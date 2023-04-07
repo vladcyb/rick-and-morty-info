@@ -3,6 +3,16 @@
 @import 'node_modules/bootstrap/scss/mixins';
 
 .characters-list-page-card {
+  flex-direction: row;
+
+  @include media-breakpoint-up(md) {
+    flex-direction: column;
+  }
+
+  &__title {
+    font-weight: 600;
+  }
+
   &__title a:not(:hover) {
     text-decoration: none;
   }
@@ -11,13 +21,21 @@
     color: var(--bs-card-color);
   }
 
-  &__avatar {
-    height: calc(200px - var(--bs-card-border-width));
-    width: calc(200px - var(--bs-card-border-width));
+  &__body {
+    padding: $spacer * 0.25 $spacer * 1.0;
 
-    @include media-breakpoint-up(xl) {
-      height: calc(250px - var(--bs-card-border-width));
-      width: calc(250px - var(--bs-card-border-width));
+    @include media-breakpoint-up(md) {
+      padding: var(--bs-card-spacer-y) var(--bs-card-spacer-x) !important;
+    }
+  }
+
+  &__avatar {
+    height: 100px;
+    width: 100px;
+
+    @include media-breakpoint-up(md) {
+      height: 100%;
+      width:  100%;
     }
   }
 

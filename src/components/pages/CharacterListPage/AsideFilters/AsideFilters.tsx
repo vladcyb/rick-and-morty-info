@@ -16,7 +16,7 @@ interface IAsideFiltersProps {
 }
 
 export const AsideFilters = ({ close, className }: IAsideFiltersProps) => (
-  <Form className={clsx('aside-filters border-end py-3 py-md-5 px-3', className)}>
+  <Form className={clsx('aside-filters', className)}>
     <div className="aside-filters__header">
       <CloseButton
         className="aside-filters__close ms-auto d-block mb-3"

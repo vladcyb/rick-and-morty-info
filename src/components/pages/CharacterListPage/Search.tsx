@@ -1,11 +1,17 @@
+import clsx from 'clsx'
+import { InputGroup } from 'react-bootstrap'
 import Form from 'react-bootstrap/Form'
-import Button from 'react-bootstrap/Button'
-import InputGroup from 'react-bootstrap/InputGroup'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { useDebouncedCallback } from 'use-debounce'
 import { useSearchParams } from 'react-router-dom'
 
-export const Search = () => {
+import './Search.scss'
+
+interface ISearchProps {
+  className?: string;
+}
+
+export const Search = ({ className }: ISearchProps) => {
   const [searchParams, setSearchParams] = useSearchParams()
   const name = searchParams.get('name') ?? ''
   const [search, setSearch] = useState(name)
@@ -24,7 +30,7 @@ export const Search = () => {
   const ref = useRef<HTMLInputElement>(null)
 
   return (
-    <InputGroup>
+    <InputGroup className={clsx('characters-search', className)}>
       <Form.Control
         placeholder="Поиск"
         value={search}
@@ -34,16 +40,14 @@ export const Search = () => {
         }}
         ref={ref}
       />
-      <Button
-        variant="outline-secondary"
+      <button
+        className="btn btn-outline-secondary characters-search__clear"
         onClick={() => {
           setSearch('')
           handleChange('')
           ref.current?.focus()
         }}
-      >
-        Очистить
-      </Button>
+      />
     </InputGroup>
   )
 }

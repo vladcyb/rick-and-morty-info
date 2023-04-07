@@ -4,7 +4,7 @@ import './PageHeader.scss'
 
 export const PageHeader = () => (
   <header className="page-header border-bottom">
-    <a href="/">
+    <a className="page-header__img-a" href="/">
       <img className="page-header__img" src={logo} alt="Логотип" />
     </a>
   </header>
