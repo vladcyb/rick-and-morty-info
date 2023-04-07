@@ -39,9 +39,11 @@ export const CharactersPagination = ({ currentPage, queryResult }: ICharactersPa
   }
 
   const renderItems = () => {
+    const showPagesBefore = window.innerWidth < 576 ? 2 : 4
+    const showPages = screen.width < 576 ? 5 : 9
+    const minItem = Math.max(1, currentPage - showPagesBefore)
+    const maxItem = Math.min(minItem + showPages, pages)
     const items = []
-    const minItem = Math.max(1, currentPage - 4)
-    const maxItem = Math.min(minItem + 9, pages)
 
     for (let i = minItem; i <= maxItem; i++) {
       items.push(i)

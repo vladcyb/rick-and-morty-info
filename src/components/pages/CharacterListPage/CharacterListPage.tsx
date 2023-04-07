@@ -3,6 +3,7 @@ import { useCallback, useEffect, useState } from 'react'
 import Button from 'react-bootstrap/Button'
 import { useSearchParams } from 'react-router-dom'
 
+import { CharactersPagination } from '@components/pages/CharacterListPage/CharactersPagination'
 import { QueryResult } from '@sharedComponents/QueryResult'
 import { useGetAllCharactersQuery } from '@app/api'
 
@@ -74,8 +75,7 @@ export const CharacterListPage = () => {
             queryResult={queryResult}
             isLoading={queryResult.isFetching}
           />
-          {/*<CharactersPagination currentPage={currentPage} queryResult={queryResult} />*/}
-          {/* TODO */}
+          <CharactersPagination currentPage={currentPage} queryResult={queryResult} />
         </div>
       </main>
     </div>
