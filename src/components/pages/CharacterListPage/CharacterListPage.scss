@@ -1,5 +1,7 @@
-@use "../../../../node_modules/include-media/dist/include-media" as *;
-@use "../../../assets/scss/breakpoints" as *;
+@import 'node_modules/bootstrap/scss/functions';
+@import 'node_modules/bootstrap/scss/variables';
+@import 'node_modules/bootstrap/scss/mixins';
+
 
 .characters-list-page {
   flex-grow: 1;
@@ -30,7 +32,7 @@
     grid-template-columns: repeat(auto-fit, 200px);
     gap: 30px;
 
-    @include media(">=xl") {
+    @include media-breakpoint-up(xl) {
       grid-template-columns: repeat(auto-fit, 250px);
     }
   }

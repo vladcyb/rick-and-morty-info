@@ -1,5 +1,6 @@
-@use "../../../../../node_modules/include-media/dist/include-media" as *;
-@use "../../../../assets/scss/breakpoints" as *;
+@import 'node_modules/bootstrap/scss/functions';
+@import 'node_modules/bootstrap/scss/variables';
+@import 'node_modules/bootstrap/scss/mixins';
 
 .characters-list-page-card {
   &__title a:not(:hover) {
@@ -14,7 +15,7 @@
     height: calc(200px - var(--bs-card-border-width));
     width: calc(200px - var(--bs-card-border-width));
 
-    @include media(">=xl") {
+    @include media-breakpoint-up(xl) {
       height: calc(250px - var(--bs-card-border-width));
       width: calc(250px - var(--bs-card-border-width));
     }
