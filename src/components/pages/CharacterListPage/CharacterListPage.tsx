@@ -1,3 +1,6 @@
+import clsx from 'clsx'
+import { useCallback, useEffect, useState } from 'react'
+import Button from 'react-bootstrap/Button'
 import { useSearchParams } from 'react-router-dom'
 
 import { CharactersPagination } from '@components/pages/CharacterListPage/CharactersPagination'
@@ -10,6 +13,13 @@ import { Search } from './Search'
 
 import './CharacterListPage.scss'
 
+function changeBodyOverflow(areFiltersOpened: boolean) {
+  if (areFiltersOpened) {
+    document.body.classList.add('overflow-hidden', 'overflow-md-scroll')
+  } else {
+    document.body.classList.remove('overflow-hidden', 'overflow-md-scroll')
+  }
+}
 
 export const CharacterListPage = () => {
   const [searchParams] = useSearchParams()
@@ -25,6 +35,15 @@ export const CharacterListPage = () => {
     gender: searchParams.get('gender') ?? '',
   })
 
+  const [areFiltersOpened, setAreFiltersOpened] = useState(false)
+
+  const closeFilters = useCallback(() => setAreFiltersOpened(false), [])
+  const openFilters = useCallback(() => setAreFiltersOpened(true), [])
+
+  useEffect(() => {
+    changeBodyOverflow(areFiltersOpened)
+  }, [areFiltersOpened])
+
   return (
     <div className="characters-list-page">
       <div className="border-bottom">
@@ -32,10 +51,19 @@ export const CharacterListPage = () => {
           <Search />
         </div>
       </div>
+      <div className="p-2 d-md-none">
+        <Button className="w-100" variant="outline-dark" onClick={openFilters}>
+          Фильтры
+        </Button>
+      </div>
       <main className="characters-list-page__main">
-        <div className="characters-list-page__sidebar border-end py-5 px-3">
-          <AsideFilters />
-        </div>
+        <AsideFilters
+          className={clsx(
+            'characters-list-page__sidebar',
+            { 'characters-list-page__sidebar_open': areFiltersOpened },
+          )}
+          close={closeFilters}
+        />
         <div className="characters-list-page__main-content pt-5 px-4">
           <QueryResult
             data={queryResult.data?.results}

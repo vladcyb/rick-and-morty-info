@@ -15,16 +15,36 @@
   }
 
   &__main-content {
-    flex-basis: 80%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+
+    @include media-breakpoint-up(md) {
+      flex-basis: 80%;
+    }
   }
 
   &__sidebar {
     flex-basis: 250px;
     flex-shrink: 0;
     background: white;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    display: none;
+
+    &_open {
+      display: block;
+    }
+
+    @include media-breakpoint-up(md) {
+      position: static;
+      height: unset;
+      display: block;
+    }
   }
 
   &__characters {
