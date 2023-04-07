@@ -18,8 +18,8 @@ export const CharacterPage = () => {
     <Container className="character-page" as="main">
       <Button
         className="my-3"
-        onClick={() => navigate('/')}
-        variant="link"
+        onClick={() => navigate(-1)}
+        variant="outline-primary"
       >
         Назад
       </Button>
