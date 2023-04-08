@@ -1,7 +1,7 @@
 import clsx from 'clsx'
 import { InputGroup } from 'react-bootstrap'
 import Form from 'react-bootstrap/Form'
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useDebouncedCallback } from 'use-debounce'
 import { useSearchParams } from 'react-router-dom'
 
@@ -16,12 +16,12 @@ export const Search = ({ className }: ISearchProps) => {
   const name = searchParams.get('name') ?? ''
   const [search, setSearch] = useState(name)
 
-  const handleChange = useCallback((value: string) => {
+  const handleChange = (value: string) => {
     const newSearchParams = new URLSearchParams(searchParams)
     newSearchParams.set('page', '1')
     newSearchParams.set('name', value)
     setSearchParams(newSearchParams.toString(), { replace: true })
-  }, [searchParams])
+  }
 
   useEffect(() => setSearch(name), [name])
 

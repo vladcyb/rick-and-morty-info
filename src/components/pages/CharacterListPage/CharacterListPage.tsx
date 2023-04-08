@@ -1,5 +1,5 @@
 import clsx from 'clsx'
-import { useCallback, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import Button from 'react-bootstrap/Button'
 import { useSearchParams } from 'react-router-dom'
 
@@ -37,9 +37,6 @@ export const CharacterListPage = () => {
 
   const [areFiltersOpened, setAreFiltersOpened] = useState(false)
 
-  const closeFilters = useCallback(() => setAreFiltersOpened(false), [])
-  const openFilters = useCallback(() => setAreFiltersOpened(true), [])
-
   useEffect(() => {
     changeBodyOverflow(areFiltersOpened)
   }, [areFiltersOpened])
@@ -51,8 +48,8 @@ export const CharacterListPage = () => {
           <Search className="w-100 w-md-50 mx-auto" />
         </div>
         <div className="p-2 d-md-none">
-          <Button className="w-100" variant="outline-dark" onClick={openFilters}>
-          Фильтры
+          <Button className="w-100" variant="outline-dark" onClick={() => setAreFiltersOpened(true)}>
+            Фильтры
           </Button>
         </div>
       </div>
@@ -62,7 +59,7 @@ export const CharacterListPage = () => {
             'characters-list-page__sidebar border-end p-3 p-md-3',
             { 'characters-list-page__sidebar_open': areFiltersOpened },
           )}
-          close={closeFilters}
+          close={() => setAreFiltersOpened(false)}
         />
         <div className="characters-list-page__main-content p-2 pt-0 p-md-3">
           <QueryResult
